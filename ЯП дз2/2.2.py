@@ -1,7 +1,7 @@
-list = []
+x = []
 y = input("введите число ")
 while y:
     y = input("введите число ")
-    list.append(y)
-    list.sort(reverse=True)
-print("".join(list))
+    x.append(y)
+    x.sort(reverse=True)
+print("".join(x))
