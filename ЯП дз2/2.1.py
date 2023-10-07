@@ -1,11 +1,7 @@
-list = []
-y = input("введите число ")
+x = []
+y = input("введите строку ")
 while y:
-    y = input("введите число ")
-    list.append(y)
-    if y == ():
-        break
-print(list)
-
-
+    x.append(y)
+    y = input("введите строку ")
+print(x)
     
