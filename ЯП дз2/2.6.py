@@ -1,5 +1,5 @@
 list = []
-y = input("введите число ")
+y = 1
 while y:
     y = input("введите число ")
     list.append(y)
@@ -8,5 +8,5 @@ while y:
     elif y ==():
         break
 k = int(input("введите номер числа "))
-print(list [k])
+print(list[k])
 
