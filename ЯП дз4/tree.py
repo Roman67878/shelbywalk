@@ -6,6 +6,3 @@ def uniq(x):
 
 x = input("Введите строку: ")
 print(uniq(x))
-
-if __name__ == '__main__':
-    print(uniq(input()))
