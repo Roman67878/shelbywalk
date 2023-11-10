@@ -1,8 +1,7 @@
 def binary_search(lst, item):
+    
     low = 0
     high = len(lst) - 1
-
-    is_found = False
 
     while not is_found and low <= high:
         middle = (low + high) // 2
