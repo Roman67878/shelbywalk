@@ -3,24 +3,20 @@ def binary_search(lst, item):
     low = 0
     high = len(lst) - 1
 
-    while not is_found and low <= high:
+    while low <= high:
         middle = (low + high) // 2
         if lst[middle] == item:
-            return lst.index(lst[middle])
+            return middle
+        if item < middle:
+            high = middle - 1
         else:
-            if item < middle:
-                high = middle - 1
-            else:
-                low = middle + 1
+            low = middle + 1
 
 
-numbs = [x for x in range(1, 20, 1)]
+numbs = [1,1,1,4,5,6,7]
 item = float(input("Введите число: "))
 
 print(binary_search(numbs, item))
-
-
-
 
 
 
