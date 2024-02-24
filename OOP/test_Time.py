@@ -1,5 +1,7 @@
 from Time import Time
+from unittest import mock
 import pytest
+import builtins
 
 
 @pytest.mark.parametrize(
@@ -17,12 +19,27 @@ def test_init(hours, minutes, seconds):
     assert time1.seconds == seconds
 
 
-def test_input(mocker):
-    mocker.patch('monkey.input', input_time="12:23:34")
+# @pytest.fixture
+# def mocker():
+#    return Time(12, 23, 34)
+
+
+@pytest.mark.parametrize(
+    ('input_time', 'hours', 'minutes', 'seconds'),
+    [
+        ('12:23:34', 12, 23, 34),
+        ('8:20:34', 8, 20, 34),
+        ('12:20:10', 12, 20, 10),
+        ('13:15:12', 13, 15, 12)
+    ]
+)
+def test_input_time(input_time, hours, minutes, seconds):
     time2 = Time()
-    assert time2.hours == 12
-    assert time2.minutes == 23
-    assert time2.seconds == 34
+    with mock.patch.object(builtins, 'input', lambda: input_time):
+        time2.input_time()
+    assert time2.hours == hours
+    assert time2.minutes == minutes
+    assert time2.seconds == seconds
 
 
 @pytest.mark.parametrize(
@@ -36,4 +53,5 @@ def test_input(mocker):
     ]
 )
 def test_str(hours, minutes, seconds, result):
-    assert Time.__str__(Time(hours, minutes, seconds)) == result
+    time3 = Time(hours, minutes, seconds)
+    assert str(time3) == result
