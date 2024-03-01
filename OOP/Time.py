@@ -1,3 +1,5 @@
+import datetime
+
 class Time:
     def __init__(self, hours=1, minutes=1, seconds=1):
         self.hours = hours
@@ -15,5 +17,21 @@ class Time:
 
     def __str__(self):
         return f"Время: {self.hours}:{self.minutes}:{self.seconds}"
+
+
+class TimeStamp(Time):
+    def __init__(self):
+        super().__init__()
+        current_time = datetime.datetime.now()
+        self.hours = current_time.hour
+        self.minutes = current_time.minute
+        self.seconds = current_time.second
+
+    def __str__(self):
+        return f"{self.hours}:{self.minutes}:{self.seconds}"
+
+
+timestamp = TimeStamp()
+print(timestamp)
 
 
