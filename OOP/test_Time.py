@@ -55,3 +55,24 @@ def test_input_time(input_time, hours, minutes, seconds):
 def test_str(hours, minutes, seconds, result):
     time3 = Time(hours, minutes, seconds)
     assert str(time3) == result
+
+
+@pytest.mark.parametrize(
+    ('hours', 'minutes', 'seconds', 'result')
+    [
+
+    ]
+)
+def test_init(hours, minutes, seconds):
+    pass
+
+
+@pytest.mark.parametrize(
+    ('hours', 'minutes', 'seconds', 'result')
+    [
+
+    ]
+)
+def test_str(hours, minutes, seconds):
+    pass
+
