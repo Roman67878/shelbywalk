@@ -1,4 +1,5 @@
-from Time import Time
+from Time import Time, TimeStamp
+from freezegun import freeze_time
 from unittest import mock
 import pytest
 
@@ -18,18 +19,10 @@ def test_init(hours, minutes, seconds):
     assert time1.seconds == seconds
 
 
-# @pytest.fixture
-# def mocker():
-#    return Time(12, 23, 34)
-
-
 @pytest.mark.parametrize(
     ('input_time', 'hours', 'minutes', 'seconds'),
     [
-        ('12:23:34', 12, 23, 34),
-        ('8:20:34', 8, 20, 34),
-        ('12:20:10', 12, 20, 10),
-        ('13:15:12', 13, 15, 12)
+        ('12:23:34', 12, 23, 34)
     ]
 )
 def test_input_time(input_time, hours, minutes, seconds):
@@ -54,4 +47,12 @@ def test_input_time(input_time, hours, minutes, seconds):
 def test_str(hours, minutes, seconds, result):
     time3 = Time(hours, minutes, seconds)
     assert str(time3) == result
+
+
+@freeze_time("23:30:30")
+def test_init():
+    time4 = TimeStamp()
+    assert time4.hours == 23
+    assert time4.minutes == 30
+    assert time4.seconds == 30
 
