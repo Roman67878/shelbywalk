@@ -30,6 +30,7 @@ class Time:
         sum_time = Time(hours=self.hours + other.hours,
                         minutes=self.minutes + other.minutes,
                         seconds=self.seconds + other.seconds)
+
         if (self.seconds + other.seconds) >= 60:
             sum_time.minutes += 1
             sum_time.seconds -= 60
@@ -39,7 +40,7 @@ class Time:
             sum_time.minutes -= 60
 
         if sum_time.hours >= 24:
-            raise TimeValueError('Неверный результат сложения')
+            sum_time.hours -= 24
 
         return sum_time
 
@@ -47,6 +48,7 @@ class Time:
         delta_time = Time(hours=self.hours - other.hours,
                           minutes=self.minutes - other.minutes,
                           seconds=self.seconds - other.seconds)
+
         if delta_time.seconds < 0:
             delta_time.minutes -= 1
             delta_time.seconds += 60
@@ -61,7 +63,14 @@ class Time:
 
         if delta_time.hours < 0:
             raise TimeValueError('Неверный результат вычитания')
+
         return delta_time
+
+    def __eq__(self, other):
+        if isinstance(other, Time):
+            return self.hours == other.hours and self.minutes == other.minutes and self.seconds == other.seconds
+        else:
+            raise TimeValueError('Нельзя провести операцию')
 
 
 class TimeStamp(Time):
@@ -70,8 +79,8 @@ class TimeStamp(Time):
         super().__init__(current.hour, current.minute, current.second)
 
 
-time1 = Time(12, 23, 34)
-time2 = Time(8, 48, 27)
+time1 = Time(23, 58, 58)
+time2 = Time(4, 23, 55)
 time3 = Time(18, 34, 56)
 time4 = Time(17, 43, 43)
 time1 = time1.__add__(time2)
@@ -80,4 +89,3 @@ print(time1)
 print(time3)
 time5 = TimeStamp()
 print(time5)
-
