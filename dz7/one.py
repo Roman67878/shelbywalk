@@ -1,5 +1,6 @@
 from collections import deque
 
+#тоху числанули((
 
 def search_success(el):
     return ("Успех!!")
